@@ -20,14 +20,20 @@ function Square({value, onSquareClick}) {
 export default function Board() {
   // This variable determines whether X or O is the next symbol to play.
   const [xIsNext, setXIsNext] = useState(true); // defaults to true as X makes the first move.
+
   // The state variable squares stores the state of each square making up the grid.
   // It is initialised to an array of null since all squares are initialised to that state.
   const [squares, setSquares] = useState(Array(9).fill(null));
 
+  const winner = calculateWinner(squares);
+  let status;
+
+  winner ? status = "Winner: " + winner : status = "Next player: " + (xIsNext ? "X" : "O");
   // Takes the index of the square that has been clicked.
   function handleClick(i) {
     // Add a check to ensure that once a square is occupied, you can't overwrite it.
-    if (squares[i]) {
+    // Also check to see if the game is over.
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     else {
@@ -48,6 +54,7 @@ export default function Board() {
   // Instead, fragments <> and </> can be used to wrap multiple adjacent elements. 
   return (
     <>
+      <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
@@ -79,7 +86,7 @@ function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6]
   ];
-  
+
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
