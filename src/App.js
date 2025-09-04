@@ -18,6 +18,8 @@ function Square({value, onSquareClick}) {
 // Used to render, manage and update the UI elements in an application.
 // default keyword specifies that this is the main function in the file.
 export default function Board() {
+  // This variable determines whether X or O is the next symbol to play.
+  const [xIsNext, setXIsNext] = useState(true); // defaults to true as X makes the first move.
   // The state variable squares stores the state of each square making up the grid.
   // It is initialised to an array of null since all squares are initialised to that state.
   const [squares, setSquares] = useState(Array(9).fill(null));
@@ -25,8 +27,15 @@ export default function Board() {
   // Takes the index of the square that has been clicked.
   function handleClick(i) {
     const nextSquares = squares.slice();
-    nextSquares[i] = "X";
+
+    if (xIsNext) {
+      nextSquares[i] = "X";
+    } else {
+      nextSquares[i] = "O";
+    }
+
     setSquares(nextSquares);
+    setXIsNext(!xIsNext);
   }
 
   // As React components need to only return a single component, if multiple squares are needed, can't just return them.
