@@ -1,7 +1,19 @@
 // Create an individual component referenced by the default component Board.
 // ( {} ) denotes that the component can be passed a property called value.
 function Square({value}) {
-  return <button className="square">{value}</button>;
+  // Function defined within Square component to define a response to the onClick property
+  function handleClick() {
+    console.log("I was clicked!");
+  }
+
+  return (
+    <button
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  );
 }
 
 // In React, this is a component, a piece of reusable code that represents a part of a UI.
