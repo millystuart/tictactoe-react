@@ -26,16 +26,22 @@ export default function Board() {
 
   // Takes the index of the square that has been clicked.
   function handleClick(i) {
-    const nextSquares = squares.slice();
-
-    if (xIsNext) {
-      nextSquares[i] = "X";
-    } else {
-      nextSquares[i] = "O";
+    // Add a check to ensure that once a square is occupied, you can't overwrite it.
+    if (squares[i]) {
+      return;
     }
+    else {
+      const nextSquares = squares.slice();
 
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
+      if (xIsNext) {
+        nextSquares[i] = "X";
+      } else {
+        nextSquares[i] = "O";
+      }
+
+      setSquares(nextSquares);
+      setXIsNext(!xIsNext);
+    }
   }
 
   // As React components need to only return a single component, if multiple squares are needed, can't just return them.
