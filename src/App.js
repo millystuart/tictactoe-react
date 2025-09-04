@@ -1,6 +1,7 @@
 // Create an individual component referenced by the default component Board.
-function Square() {
-  return <button className="square">1</button>;
+// ( {} ) denotes that the component can be passed a property called value.
+function Square({value}) {
+  return <button className="square">{value}</button>;
 }
 
 // In React, this is a component, a piece of reusable code that represents a part of a UI.
@@ -15,19 +16,19 @@ export default function Board() {
   return (
     <>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value="1"/>
+        <Square value="2"/>
+        <Square value="3"/>
       </div>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value="4"/>
+        <Square value="5"/>
+        <Square value="6"/>
       </div>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value="7"/>
+        <Square value="8"/>
+        <Square value="9"/>
       </div>
     </>
   );
