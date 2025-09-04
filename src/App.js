@@ -5,5 +5,19 @@ export default function Square() {
   // <button> is a JSX element, a mix of Javascript code and HTML tags.
   // className="square" is a button property or prop that tells CSS how to style the button.
   // X is the text inside the button.
-  return <button className="square">X</button>;
+  // As React components need to only return a single component, if multiple squares are needed, can't just return them.
+  // Instead, fragments <> and </> can be used to wrap multiple adjacent elements. 
+  return (
+    <>
+      <button className="square">X</button>
+      <button className="square">X</button>
+      <button className="square">X</button>
+      <button className="square">X</button>
+      <button className="square">X</button>
+      <button className="square">X</button>
+      <button className="square">X</button>
+      <button className="square">X</button>
+      <button className="square">X</button>
+    </>
+  );
 }
