@@ -16,8 +16,7 @@ function Square({value, onSquareClick}) {
 
 // In React, this is a component, a piece of reusable code that represents a part of a UI.
 // Used to render, manage and update the UI elements in an application.
-// default keyword specifies that this is the main function in the file.
-export default function Board() {
+function Board() {
   // This variable determines whether X or O is the next symbol to play.
   const [xIsNext, setXIsNext] = useState(true); // defaults to true as X makes the first move.
 
@@ -94,4 +93,19 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+// default keyword specifies that this is the main function in the file.
+// Essentially, this is the top-level component of the game now.
+export default function Game() {
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board />
+      </div>
+      <div className="game-info">
+        <ol>{/*TO-DO*/}</ol>
+      </div>
+    </div>
+  );
 }
