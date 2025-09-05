@@ -98,6 +98,11 @@ function calculateWinner(squares) {
 // default keyword specifies that this is the main function in the file.
 // Essentially, this is the top-level component of the game now.
 export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  // As there are nine moves that can be made in a tic-tac-toe game, the array has 9 possible placeholders for history to be stored in.
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
+
   return (
     <div className="game">
       <div className="game-board">
